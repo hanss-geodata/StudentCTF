@@ -16,19 +16,19 @@ templ Head() {
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <link rel="icon" type="image/x-icon" href="static/dist/favicon.ico"/>
-        <title>SWAT - Secure Web Application Testing</title>
+        <title>Capture the Flag</title>
     </head>
 }
 
 templ TopBar() {
     <div class="bg-blue-500 text-white w-full p-4 flex justify-between items-center">
         <div class="text-lg font-semibold">
-        <a hx-get="/index" hx-swap="innerHTML" hx-push-url="true" hx-target="#main" class="hover:text-blue-300">SWAT - <b>S</b>ecure <b>W</b>eb <b>A</b>pplication <b>T</b>esting       </a>
+        <a hx-get="/index" hx-swap="innerHTML" hx-push-url="true" hx-target="#main" class="hover:text-blue-300 cursor-pointer">Capture the Flag</a>
         </div>
         <nav>
             <ul class="flex space-x-4">
                 <li><a hx-get="/index" hx-swap="outerHTML" hx-push-url="true"
-                 hx-target="#root" class="hover:text-blue-300">Tasks</a></li>
+                 hx-target="#root" class="hover:text-blue-300 cursor-pointer">Oppgaver</a></li>
             </ul>
         </nav>
     </div>

@@ -1,0 +1,59 @@
+package oppgave4
+
+templ Oppgave4Page() {
+  <div id="root" class="mt-10 flex flex-col items-center justify-center bg-gray-100 px-4">
+      @Submit()
+  </div>
+}
+
+
+
+templ Submit() {
+<script>
+    function submitCode() {
+        codeInput = document.getElementById('code');
+        const formData = new FormData(document.querySelector('#code-submit-form'));
+        fetch('/oppgave4/unlock', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (!response.ok) {
+                // Add borderClass to input
+                codeInput.classList.add('border-red-500');
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            localStorage.setItem(data.name, 'done');
+            dispatchEvent(new CustomEvent('updatecompleted', { detail: data.name }));
+            codeInput.classList.remove('border-red-500');
+            Swal.fire({
+                            title: 'Suksess!',
+                            text: 'Du har funnet koden og et flagg: ' + data.name,
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            })
+        })
+        .catch(error => {
+            console.error('Error submitting code:', error);
+            codeInput.classList.add('border-red-500');
+        });
+    }
+</script>
+
+<div class="bg-white mt-5"
+ x-data="{ code: '', submissionStatus: 'notSubmitted' }">
+  <form id="code-submit-form" @submit.prevent="submitCode" class="flex items-center bg-white rounded-md overflow-hidden shadow-sm">
+      <label for="code" class="sr-only">Code:</label>
+      <input type="text" maxlength="3" x-model="code" id="code" name="code" placeholder="000"
+             class="flex-1 px-4 text-sm focus:ring-0 focus:outline-none border-2"
+             style="padding-top: 0.64rem; padding-bottom: 0.864rem;" required/>
+      <button type="submit" class="px-4 py-3 bg-indigo-600 text-white text-sm rounded-r-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+          Submit Code
+      </button>
+
+  </form>
+</div>
+}

@@ -1,0 +1,14 @@
+package oppgave7
+
+
+templ Oppgave7Page() {
+  <div class="flex justify-center items-center">
+    @StegoImg("/static/dist/images/stego.jpg")
+  </div>
+}
+
+templ StegoImg(imgSrc string) {
+  <div class="rounded-lg max-w-xl">
+    <img src={imgSrc} />
+  </div>
+}

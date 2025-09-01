@@ -3,23 +3,25 @@ package flags
 import "fmt"
 
 var (
-	BaseFlag       = "geodata"
-	InjectionFlag  = GetFlag("SQL_injections_are_B4D")
-	HardCodedFlag  = GetFlag("H4rdc0ded_S3cr3t")
-	TraversalFlag  = GetFlag("all_your_base_are_belong_to_us")
-	CmonsterFlag   = GetFlag("cookie_conster_stea1s_all_your_c00kies")
-	XssFlag        = GetFlag("XSS_is_just_the_beginning")
-	SecurityFlag   = GetFlag("s3cur1ty_1s_just_4n_1llus10n")
-	ValidationFlag = GetFlag("V4l1d4t10n_1s_4_m1r4ge")
+	BaseFlag     = "flag"
+	Oppgave8Flag = GetFlag("1nj3ct10n_1s_p01s0n")
+	Oppgave1Flag = GetFlag("h4rdc0d3d_s3cr3ts_4r3_b4d_pr4ct1c3")
+	Oppgave2Flag = GetFlag("all_your_base_are_belong_to_us")
+	Oppgave5Flag = GetFlag("yummy_c00kies")
+	Oppgave6Flag = GetFlag("s3cr3t_3nc0d1ng")
+	Oppgave3Flag = GetFlag("sh0pp1ng_h4ck")
+	Oppgave7Flag = GetFlag("din0s4urs_4re_c00l")
+	Oppgave4Flag = GetFlag("Oppgave5")
 
 	FlagTaskNameMap = map[string]string{
-		InjectionFlag:  "Injection",
-		XssFlag:        "XSS",
-		TraversalFlag:  "Path Traversal",
-		HardCodedFlag:  "Hardcoded",
-		ValidationFlag: "Validation",
-		CmonsterFlag:   "Cmonster",
-		SecurityFlag:   "Security",
+		Oppgave8Flag: "Oppgave8",
+		Oppgave2Flag: "Oppgave2",
+		Oppgave1Flag: "Oppgave1",
+		Oppgave3Flag: "Oppgave3",
+		Oppgave5Flag: "Oppgave5",
+		Oppgave6Flag: "Oppgave6",
+		Oppgave7Flag: "Oppgave7",
+		Oppgave4Flag: "Oppgave4",
 	}
 )
 

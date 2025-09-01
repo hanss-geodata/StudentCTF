@@ -3,23 +3,25 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/fingann/swat/pkg/flags"
-	"github.com/fingann/swat/tasks/cmonster"
-	"github.com/fingann/swat/tasks/security"
 	"io"
 	"net/http"
 	"os"
 
+	"github.com/fingann/swat/pkg/flags"
+	"github.com/fingann/swat/tasks/oppgave1"
+	"github.com/fingann/swat/tasks/oppgave4"
+	"github.com/fingann/swat/tasks/oppgave5"
+	Oppgave6 "github.com/fingann/swat/tasks/oppgave6"
+	"github.com/fingann/swat/tasks/oppgave7"
+
 	"github.com/fingann/swat/pkg/renderer"
 	"github.com/fingann/swat/public"
-	"github.com/fingann/swat/tasks/hardcoded"
-	"github.com/fingann/swat/tasks/injection"
-	"github.com/fingann/swat/tasks/traversal"
-	"github.com/fingann/swat/tasks/validation"
+	"github.com/fingann/swat/tasks/oppgave2"
+	Oppgave3 "github.com/fingann/swat/tasks/oppgave3"
+	"github.com/fingann/swat/tasks/oppgave8"
 
 	"sync"
 
-	"github.com/fingann/swat/tasks/xss"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/browser"
 )
@@ -64,36 +66,42 @@ func main() {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Flag"})
 	})
 
-	if err := injection.RegisterRoutes(r); err != nil {
-		fmt.Printf("failed to register routes: %v", err)
-		return
-	}
-	if err := xss.RegisterRoutes(r); err != nil {
+	if err := oppgave8.RegisterRoutes(r); err != nil {
 		fmt.Printf("failed to register routes: %v", err)
 		return
 	}
 
-	if err := traversal.RegisterRoutes(r); err != nil {
+	if err := oppgave2.RegisterRoutes(r); err != nil {
 		fmt.Printf("failed to register routes: %v", err)
 		return
 	}
 
-	if err := hardcoded.RegisterRoutes(r); err != nil {
+	if err := oppgave1.RegisterRoutes(r); err != nil {
 		fmt.Printf("failed to register routes: %v", err)
 		return
 	}
 
-	if err := validation.RegisterRoutes(r); err != nil {
+	if err := Oppgave3.RegisterRoutes(r); err != nil {
 		fmt.Printf("failed to register routes: %v", err)
 		return
 	}
 
-	if err := cmonster.RegisterRoutes(r); err != nil {
+	if err := oppgave5.RegisterRoutes(r); err != nil {
 		fmt.Printf("failed to register routes: %v", err)
 		return
 	}
 
-	if err := security.RegisterRoutes(r); err != nil {
+	if err := Oppgave6.RegisterRoutes(r); err != nil {
+		fmt.Printf("failed to register routes: %v", err)
+		return
+	}
+
+	if err := oppgave7.RegisterRoutes(r); err != nil {
+		fmt.Printf("failed to register routes: %v", err)
+		return
+	}
+
+	if err := oppgave4.RegisterRoutes(r); err != nil {
 		fmt.Printf("failed to register routes: %v", err)
 		return
 	}
@@ -109,7 +117,6 @@ func main() {
 			return
 		}
 	}(wg, r)
-	go xss.VisitWebsiteWithRod("http://localhost:8081/xss")
 
 	browser.OpenURL("http://localhost:8081")
 

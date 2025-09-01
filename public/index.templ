@@ -4,44 +4,34 @@ templ Index(err string) {
 }
 
 // Define a component for a single task
-templ Task(title string, imgSrc string, link string) {
-    <div class="w-full p-2" x-data="{ hover: false, isDone: false }" x-init={`isDone = localStorage.getItem("`+ title +`") === 'done'`} @updatecompleted.window={`console.log($event,' yolo'); if ($event.detail === "`+ title +`"){  isDone = true} `}>
-        <div class="bg-gray-200 p-4 rounded-lg shadow-lg relative" x-on:mouseenter="hover = true" x-on:mouseleave="hover = false">
-            <h2 class="text-xl font-bold mb-2 text-gray-800">
-                {title}
-                <span x-show.important="isDone" :class="{ 'hide': !isDone }" class="hide text-green-500 ml-2">[Completed &#10004;]</span> <!-- Checkmark when task is done -->
-            </h2>
-<div class="relative">
-    <img src={imgSrc} class="w-full rounded-lg" :class="{'grayscale': !hover}" />
-    <button hx-get={link} hx-target="#main" hx-swap="innerHTML" hx-push-url="true" hx-replace-url="true"
-            class="absolute inset-0 w-full h-full flex items-center justify-center text-blue-500 hover:underline opacity-0"
-            :class="{'opacity-100': hover}"
-            style="background-color: rgba(0,0,0,0.5); color: white;">
-        Go to Task
-    </button>
+templ Task(title string, link string) {
+<div class="w-full p-2" x-data="{ hover: false, isDone: false }" x-init={`isDone = localStorage.getItem("`+ title +`") === 'done'`} @updatecompleted.window={`console.log($event,' yolo'); if ($event.detail === "`+ title +`"){  isDone = true} `}>
+  <div button hx-get={link} hx-target="#main" hx-swap="innerHTML" hx-push-url="true" hx-replace-url="true" class="cursor-pointer bg-gray-200 p-4 rounded-lg shadow-lg relative" x-on:mouseenter="hover = true" x-on:mouseleave="hover = false">
+    <h2 class="text-xl font-bold mb-2 text-gray-800">
+      {title}
+    </h2>
+  </div>
 </div>
-
-        </div>
-    </div>
 }
 
 // IndexPage shows boxes for every task with a title, picture, and a link to the task
 templ IndexPage(err string) {
     <div id="root" class="flex flex-col items-center justify-center bg-gray-100">
-        @Submit()
         <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
-            <h1 class="text-2xl font-bold text-gray-800">Tasks</h1>
+            <h1 class="text-2xl font-bold text-gray-800">Oppgaver</h1>
             <div class="mt-4">
                 <div class="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 -mx-2">
                     // Use the Task component for each task
-                    @Task("Security", "/static/dist/images/security.webp", "/security")
-                    @Task("Injection", "/static/dist/images/sqlinjection.webp", "/injection")
-                    @Task("Hardcoded", "/static/dist/images/hardcoded.webp", "/hardcoded")
-                    @Task("Path Traversal", "/static/dist/images/pathtraversal.webp", "/traversal")
-                    @Task("Validation", "/static/dist/images/validation.webp", "/validation")
-                    @Task("Cmonster", "/static/dist/images/cmonster.webp", "/cmonster")
-                    @Task("XSS", "/static/dist/images/xsstask.webp", "/xss")
-                    // @Task("Generic", "/static/dist/images/generictask.webp", "/traversal")
+                    @Task("Oppgave1", "/oppgave1")
+                    @Task("Oppgave2", "/oppgave2")
+                    @Task("Oppgave3", "/Oppgave3")
+                    @Task("Oppgave4", "/oppgave4")
+                    @Task("Oppgave5", "/oppgave5")
+                    @Task("Oppgave6", "/Oppgave6")
+                    @Task("Oppgave7", "/oppgave7")
+                    @Task("Oppgave8", "/oppgave8")
+
+                    // @Task("Generic", "/static/dist/images/generictask.webp", "/oppgave3")
                     // Add more tasks as needed using the Task component
                 </div>
             </div>
@@ -99,5 +89,3 @@ templ Submit() {
   </form>
 </div>
 }
-
-

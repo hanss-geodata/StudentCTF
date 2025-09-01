@@ -1,0 +1,48 @@
+package oppgave5
+
+
+templ Oppgave5Page() {
+    <div id="root" class="min-h-screen flex flex-col bg-gray-100">
+
+        <div class="flex-grow">
+            <div class="max-w-4xl mx-auto py-8">
+                <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                    <div class="px-4 py-5 sm:px-6">
+                        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center"  x-data="{ username: 'Ikke admin' }" x-init="document.cookie.split('; ').reduce((acc, cookie) => {const [name, value] = cookie.split('='); if (name === 'username') {acc = value} return acc}, '')" >
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                              Administratorens flagg
+                            </h3>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                              Logget inn som:
+                              <span id="user" class="font-medium" x-text="username">
+                                User
+                              </span>
+                            </h3>
+                        </div>
+                    </div>
+                     <div class="border-t border-gray-200" hx-get="/oppgave5/admin" hx-trigger="load" hx-swap="innerHTML">
+                            <!-- Admin info will be loaded here -->
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+templ Oppgave5AdminInfo(flag string) {
+    if flag == "" {
+     <dl>
+         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+             <dt class="text-sm font-medium text-gray-500">Flagg:</dt>
+             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Bare administratoren har tilgang til dette flagget.</dd>
+         </div>
+     </dl>
+    } else {
+      <dl>
+          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Flagg:</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{flag}</dd>
+          </div>
+      </dl>
+    }
+}

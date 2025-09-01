@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: Random Number Generator API
+  description: API for generating random numbers
+  version: 1.0.0
+servers:
+  - url: http://localhost:8081/oppgave1
+paths:
+  /rng/generateNumber:
+    get:
+      summary: Get a random number
+      operationId: getRandomNumber
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  number:
+                    type: integer
+                    description: A random number
+      Oppgave7:
+        - ApiKeyAuth: []
+  /rng/flag:
+    get:
+      summary: Get the flag metric
+      operationId: getFlagMetric
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  flag:
+                    string: string
+                    description: Flag metric
+      Oppgave7:
+        - ApiKeyAuth: []
+components:
+  Oppgave7Schemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
