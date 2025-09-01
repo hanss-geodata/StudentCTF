@@ -108,7 +108,7 @@ templ ListItems(files []UploadedFile) {
                         <h3 class="text-sm font-medium text-lg text-gray-900 truncate">{file.Name}</h3>
                     </div>
                 </div>
-                <a href={ templ.SafeURL(fmt.Sprintf("/oppgave2/download?file=%s", file.Name)) } class="ml-2 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-white font-bold py-2 px-4 rounded" download>
+                <a href={ templ.SafeURL(fmt.Sprintf("/oppgave2/download?file=%s", file.Name)) } class="ml-2 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-white font-bold py-2 px-4 rounded" download={ file.Name } >
                     Last Ned
                 </a>
 

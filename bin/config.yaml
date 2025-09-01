@@ -1,12 +1,12 @@
 version: 1
-project_name: swat
+project_name: StudentCTF
 release:
   github:
-    owner: Fingann
-    name: swat
+    owner: hanss-geodata
+    name: StudentCTF
   name_template: '{{.Tag}}'
 builds:
-  - id: swat
+  - id: StudentCTF
     goos:
       - linux
       - windows
@@ -33,7 +33,7 @@ builds:
       - darwin_amd64_v1
     dir: .
     main: .
-    binary: swat
+    binary: StudentCTF
     builder: go
     tool: go
     command: build
