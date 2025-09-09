@@ -1,24 +1,48 @@
 # Løsningsforslag
 
-## oppgave 1:
-For å løse denne må man gjøre et kall til /flag endepunktet som står i API dokumentasjonen. Man kan hente ut API key fra spørringene på /oppgeve1 siden, og legge det til som en header i /flag requesten:
+## Oppgave 1:
+
+### Tips
+
+- Sjekk ut hva som sendes med i nettverkskallet når du trykker "Nytt tall" på /oppgave1
+- Man kan lime inn og kjøre Javascript / Fetch kode rett inn i Console i Dev Tools. Se etter noe slikt i dokumentasjonen.
+
+For å løse denne må man gjøre et kall til /flag endepunktet som står i API dokumentasjonen. Man kan hente ut API key fra spørringene på /oppgave1 siden, og legge det til som en header i /flag requesten:
 
 `curl --request GET --url http://localhost:8081/oppgave1/rng/flag --header 'X-Api-Key: f414d481-8f7b-41e5-ab5e-05814bb1f509'`
 
 ## Oppgave 2:
+
+### Tips
+
+- Bruk path traversal
+- Let oppover i filstrukturen
+
 I denne oppgaven utnytter vi path traversal til å hente en fil som egentlig ikke skal være tilgjengelig for brukeren. Vi benytter endepunktet for å laste ned instruksjons filen, men modifiserer filbanen til å gå opp i systemet, så til filen der flagget ligger.
 
 http://localhost:8081/oppgave2/download?file=../../../../windows/flag.txt
 
 ## Oppgave 3:
+
+### Tips
+
+- Kan man kjøpe et negativt antall?
+
 Her trenger vi å skaffe penger på serveren. For å gjøre det kan vi kjøpe et negativt flag, som vil gi oss nok penger til å kjøpe et vanlig flag etterpå. Vi finner verdiene til requesten ved å bruke dev tools i browseren.
 
 `curl 'http://localhost:8081/Oppgave3/api/purchase' --data-raw '[{"id":"id1","quantity":-1},{"id":"id2","quantity":0},{"id":"id3","quantity":0}]'`
 
 ## Oppgave 4:
+
+### Tips
+
+- Sorry folkens, her er det brute force som gjelder
+- Automatiser requesten
+
 Denne oppgaven kan vi løse ved å prøve alle verdier, aka. brute force. Vi kan se hvordan requesten gjhøres ved å bruke dev tools.
 
 (kode fra ChatGPT)
+
 ```
 async function sendRequest(number) {
     // Format the number with leading zeros (3 digits)
@@ -58,21 +82,42 @@ countAndSend();
 ```
 
 ## Oppgave 5:
+
+### Tips
+
+- Det er ingen verifisering av rettigheter via serveren, rettighetene ligger lagret i klienten
+
 Her har vi ikke noen verifisering av rettigheter på serveren. Det gjør at hvis en bruker endrer verdi i cookie på sin klient så får man adminrettigheter, og tilgang til flagget.
 
 Cookie -> admin: 1
 
 ## Oppgave 6:
+
+### Tips
+
+- Finn type encoding på teksten
+
 Dette er en tekst som er encodet i base64, man kan lett finne verktøy online, eller bruke f. eks base64 verktøyet fra GNU Coreutils
 
 `echo <tekst> | base64 -d`
 
 ## Oppgave 7:
+
+### Tips
+
+- Flagget er gjemt i bildet
+- Type kryptering starter på ste..
+
 Flagget i denne oppgaven er gjemt inne i bytes i bildet. Dette er en type kryptografi som heter steganography, som navnet på bildet hintet om. man kan finne verktøy online for å dekode dette.
 
 Steganography online decrypt (https://futureboy.us/stegano/decinput.html)
 
 ## Oppgave 8:
+
+### Tips
+
+- Kan du lage en spørring som alltid returnerer true?
+
 Denne oppgaven bruker SQL injection for å logge på serveren. Ved å lage en spørring som returnerer "true" blir man logget på uavhengig av om brukernavn og passord er riktig.
 
 `' OR TRUE --`
